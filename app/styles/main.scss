@@ -1,0 +1,11 @@
+@import "_navbar.scss";
+@import 'components/_header.scss';
+@import 'components/trackItem.scss';
+@import 'components/player.scss';
+
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
