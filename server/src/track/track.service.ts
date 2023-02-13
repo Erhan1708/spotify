@@ -17,12 +17,12 @@ export class TrackService {
     private fileService: FileService,
   ) {}
 
-  async create(dto: CreateTrackDto, picture: any, audio: any): Promise<Track> {
+  async create(dto: CreateTrackDto, picture, audio): Promise<Track> {
     const audioPath = this.fileService.createFile(FileType.AUDIO, audio);
     const picturePath = this.fileService.createFile(FileType.IAMGE, picture);
     const track = await this.trackModel.create({
       ...dto,
-      listen: 0,
+      listens: 0,
       audio: audioPath,
       picture: picturePath,
     });
@@ -30,7 +30,7 @@ export class TrackService {
   }
 
   async getAll(count=10,offset=0): Promise<Track[]> {
-    const tracks = await this.trackModel.find().skip(offset).limit(count);
+    const tracks = await this.trackModel.find().skip(Number(offset)).limit(Number(count));
     return tracks;
   }
 

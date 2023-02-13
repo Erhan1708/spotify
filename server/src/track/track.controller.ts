@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Controller, Get } from "@nestjs/common";
 import { Body, Delete, Param, Post, Query, UploadedFiles, UseInterceptors } from "@nestjs/common/decorators";
-import { FileFieldsInterceptor } from "@nestjs/platform-express/multer";
+import { FileFieldsInterceptor } from "@nestjs/platform-express";
 import { ObjectId } from "mongoose";
 import { CreateCommentDto } from "./dto/create-comment.dto";
 import { CreateTrackDto } from "./dto/create-track.dto";
@@ -18,8 +18,6 @@ export class TrackController {
     ]))
   create(@UploadedFiles() files, @Body() dto: CreateTrackDto) {
     const {picture, audio}= files
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
     return this.trackService.create(dto, picture[0], audio[0]);
   }
 
