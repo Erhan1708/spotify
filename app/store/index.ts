@@ -4,7 +4,7 @@ import thunk, { ThunkDispatch } from "redux-thunk";
 import { reducer, RootState } from "./reducers";
 
 // create a makeStore function
-const makeStore = (_context: Context) => createStore(reducer, applyMiddleware(thunk));
+const makeStore = (context: Context) => createStore(reducer, applyMiddleware(thunk));
 
 // export an assembled wrapper
 export const wrapper = createWrapper<Store<RootState>>(makeStore, { debug: true });
