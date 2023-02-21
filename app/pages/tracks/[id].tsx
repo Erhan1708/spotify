@@ -54,6 +54,7 @@ const TrackPage = ({serverTrack} :any) => {
             <div style={{ marginLeft: 30 }}>
                <h1>{track.name}</h1>
                <h4>{track.artist}</h4>
+               <p>{track.listens}- прослушиваний </p>
             </div>
          </Grid>
          <h1>Текст к треку</h1>

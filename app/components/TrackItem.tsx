@@ -2,6 +2,7 @@ import { useActions } from '@/hooks/useActions';
 import { ITrack } from '@/types/track';
 import { Pause, PlayArrow } from '@mui/icons-material';
 import { Card, Grid, IconButton } from '@mui/material';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { FC } from 'react';
 
@@ -20,8 +21,17 @@ const TrackItem:FC<TrackItemProps> = ({track, active = false}) => {
       playTrack()
    }
 
+   const listens = async (id: string) => {
+      try{
+         await axios.post(`http://localhost:2000/tracks/listen/${id}`)
+      }catch(e){
+         console.log(e)
+      }
+   }
+
    return (
-      <Card className="track" onClick={()=>router.push('/tracks/' + track._id)}>
+      <Card className="track"
+            onClick={async ()=>await router.push('/tracks/' + track._id) && listens(track._id)}>
          <IconButton onClick={play}>
             {!active ? <PlayArrow/>: <Pause/>}
          </IconButton>
